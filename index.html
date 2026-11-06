@@ -1,977 +1,979 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- META TAGS POUR GOOGLE -->
-    <meta name="description" content="IIBManager - Téléchargez gratuitement le logiciel professionnel pour sauvegarder vos vidéos YouTube, TikTok, Dailymotion et fichiers. Interface intuitive, rapide et sécurisée. 15 jours d'essai gratuit.">
-    <meta name="keywords" content="IIBManager, IIB Manager, téléchargement vidéo, download manager, youtube downloader, tiktok downloader, sauvegarde fichiers, video downloader, windows downloader, télécharger vidéo youtube, sauvegarder vidéo tiktok, gestionnaire téléchargement windows">
-    <meta name="author" content="IRNAM MOHAMED">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-    <meta name="googlebot" content="index, follow">
-    <meta name="language" content="French">
-    <meta name="revisit-after" content="7 days">
-    
-    <!-- OPEN GRAPH POUR LES RESEAUX SOCIAUX -->
-    <meta property="og:title" content="IIBManager | Téléchargement Vidéo Professionnel">
-    <meta property="og:description" content="Téléchargez gratuitement IIBManager - Sauvegardez vos vidéos YouTube, TikTok et fichiers en un clic. 15 jours d'essai gratuit.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://irntex12.github.io/IIB-Manager/">
-    <meta property="og:site_name" content="IIBManager">
-    
-    <!-- TWITTER CARD -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="IIBManager - Téléchargement Vidéo Professionnel">
-    <meta name="twitter:description" content="Logiciel de téléchargement vidéo et fichiers pour Windows - 15 jours d'essai gratuit">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Iri F Videos Backup : application indépendante pour sauvegarder localement les vidéos F auxquelles vous avez accès.">
+<meta name="keywords" content="Iri F Videos Backup, Iri F VB, sauvegarde vidéo F, vidéo hors ligne, backup vidéo">
+<meta name="author" content="IRNAM MOHAMED">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Iri F Videos Backup">
+<meta property="og:description" content="Sauvegardez simplement les vidéos F auxquelles vous avez accès.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://irnam2.github.io/IIB-Manager/">
+<meta property="og:site_name" content="Iri F Videos Backup">
+<link rel="canonical" href="https://irnam2.github.io/IIB-Manager/">
+<link rel="icon" type="image/png" href="images/Logo.png">
+<title>Iri F Videos Backup | Sauvegarde vidéo professionnelle</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Iri F Videos Backup",
+  "alternateName": "Iri F VB",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Windows, Android",
+  "author": { "@type": "Person", "name": "IRNAM MOHAMED" },
+  "description": "Application indépendante de sauvegarde locale de vidéos F accessibles à l’utilisateur.",
+  "url": "https://irnam2.github.io/IIB-Manager/"
+}
+</script>
+<style>
+  /* ----- RESET & VARIABLES ----- */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-    <script type="application/ld+json">
-    {
-      "@context":"https://schema.org",
-      "@type":"SoftwareApplication",
-      "name":"IIBManager",
-      "applicationCategory":"DownloadManager",
-      "operatingSystem":"Windows 10, Windows 11",
-      "description":"Gestionnaire de téléchargement professionnel pour vidéos et fichiers avec support 4K, reprise automatique et interface intuitive.",
-      "url":"https://irntex12.github.io/IIB-Manager/"
+  :root {
+    --bg: #070e19;
+    --bg-gradient: radial-gradient(ellipse at 50% -20%, #1a3550 0%, #070e19 70%);
+    --panel: #0f1a2c;
+    --panel-light: #16243a;
+    --text: #eef4ff;
+    --muted: #9aaec9;
+    --blue: #4db8ff;
+    --blue-soft: #4db8ff22;
+    --blue-glow: #4db8ff66;
+    --line: rgba(77, 184, 255, 0.2);
+    --line-strong: rgba(77, 184, 255, 0.45);
+    --gold: #e8b54e;
+    --gold-bg: #e8b54e12;
+    --radius: 20px;
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 95px;
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg-gradient);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* ----- HEADER ----- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(7, 14, 25, 0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    transition: box-shadow 0.3s;
+  }
+
+  nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    transition: opacity 0.2s;
+  }
+
+  .brand:hover { opacity: 0.85; }
+
+  .brand img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: var(--panel-light);
+    padding: 4px;
+    border: 1px solid var(--line);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: #c3d2e5;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border-radius: 30px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: #fff;
+    background: var(--blue-soft);
+  }
+
+  /* Lang selector */
+  .lang-selector {
+    display: flex;
+    gap: 2px;
+    padding: 4px;
+    border: 1px solid var(--line);
+    border-radius: 40px;
+    background: var(--panel);
+  }
+
+  .lang-btn {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    padding: 6px 10px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .lang-btn.active {
+    background: var(--blue);
+    color: #071321;
+  }
+
+  .lang-btn:hover:not(.active) {
+    color: #fff;
+  }
+
+  /* ----- MAIN ----- */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 36px 24px 60px;
+  }
+
+  section {
+    margin-bottom: 70px;
+  }
+
+  /* ----- HERO ----- */
+  .hero {
+    padding: 78px 28px 68px;
+    text-align: center;
+    border: 1px solid var(--line);
+    border-radius: 32px;
+    background: linear-gradient(145deg, #142c44 0%, #0a1526 100%);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 20%, var(--blue-glow) 0%, transparent 60%);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    color: #b6e0ff;
+    border: 1px solid var(--line-strong);
+    background: var(--blue-soft);
+    padding: 6px 16px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    backdrop-filter: blur(4px);
+  }
+
+  h1 {
+    font-size: clamp(2.3rem, 7vw, 4.2rem);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    background: linear-gradient(110deg, #fff 0%, #7bcaff 45%, #a8b4ff 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: -0.02em;
+    font-weight: 900;
+  }
+
+  .tagline {
+    font-size: clamp(1.15rem, 3vw, 1.55rem);
+    font-weight: 700;
+    color: #dbe8f8;
+    margin-bottom: 12px;
+  }
+
+  .description {
+    max-width: 720px;
+    margin: 0 auto 30px;
+    color: var(--muted);
+    font-size: 1.02rem;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 30px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+  }
+
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn.primary {
+    background: linear-gradient(120deg, #4db8ff, #9ca8ff);
+    color: #071321;
+    box-shadow: 0 8px 24px -6px var(--blue-glow);
+  }
+
+  .btn.secondary {
+    border: 1px solid var(--line-strong);
+    background: var(--panel-light);
+    color: var(--text);
+  }
+
+  .btn.secondary:hover {
+    background: var(--blue-soft);
+    border-color: var(--blue);
+  }
+
+  /* ----- TITRES DE SECTION ----- */
+  h2 {
+    text-align: center;
+    font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+    color: #8bd0ff;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+    font-weight: 800;
+  }
+
+  h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue), transparent);
+    border-radius: 4px;
+    margin: 12px auto 0;
+  }
+
+  .intro {
+    text-align: center;
+    color: var(--muted);
+    max-width: 760px;
+    margin: 0 auto 32px;
+    font-size: 1.02rem;
+  }
+
+  /* ----- GRILLE FEATURES ----- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    background: linear-gradient(150deg, #12213a 0%, #0d1728 100%);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px 22px;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    position: relative;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    border-color: var(--line-strong);
+    box-shadow: 0 18px 40px -12px var(--blue-glow);
+  }
+
+  .icon {
+    font-size: 2.2rem;
+    margin-bottom: 14px;
+    display: inline-block;
+    background: var(--blue-soft);
+    padding: 10px 14px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+  }
+
+  .card h3 {
+    color: #b1e0ff;
+    margin-bottom: 8px;
+    font-size: 1.08rem;
+    font-weight: 700;
+  }
+
+  .card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  /* ----- ABOUT / PANEL ----- */
+  .panel {
+    background: linear-gradient(150deg, #11203a 0%, #0b1526 100%);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px 34px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .panel p {
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  .panel p + p {
+    margin-top: 16px;
+  }
+
+  .panel strong {
+    color: var(--text);
+  }
+
+  .notice {
+    margin-top: 22px;
+    padding: 18px 20px;
+    border-left: 4px solid var(--gold);
+    background: var(--gold-bg);
+    border-radius: 10px;
+    color: #dbe4f0;
+    font-size: 0.95rem;
+  }
+
+  /* ----- DOWNLOAD ----- */
+  .download {
+    text-align: center;
+    padding: 40px 28px;
+    border-radius: 28px;
+    border: 1px solid var(--line);
+    background: linear-gradient(150deg, #14304c 0%, #0e1d33 100%);
+    box-shadow: var(--shadow);
+  }
+
+  .pills {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px 0 28px;
+  }
+
+  .pill {
+    border: 1px solid var(--line-strong);
+    border-radius: 30px;
+    padding: 6px 16px;
+    color: #b9e2ff;
+    background: var(--blue-soft);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .download .actions {
+    margin-top: 8px;
+  }
+
+  .small {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 18px;
+  }
+
+  /* ----- SCREENSHOTS ----- */
+  .shots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+
+  .shot {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.25s, border-color 0.25s;
+  }
+
+  .shot:hover {
+    transform: translateY(-4px);
+    border-color: var(--line-strong);
+  }
+
+  .shot img {
+    width: 100%;
+    height: auto;
+    min-height: 160px;
+    object-fit: contain;
+    background: #071321;
+    display: block;
+  }
+
+  .shot p {
+    padding: 14px;
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  /* ----- FAQ ----- */
+  .faq {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .faq-item {
+    background: linear-gradient(150deg, #12213a 0%, #0d1728 100%);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    transition: border-color 0.25s;
+  }
+
+  .faq-item:hover {
+    border-color: var(--line-strong);
+  }
+
+  .faq-item h3 {
+    color: #a9dcff;
+    margin-bottom: 10px;
+    font-size: 1.02rem;
+    font-weight: 700;
+  }
+
+  .faq-item p {
+    color: var(--muted);
+    font-size: 0.94rem;
+  }
+
+  /* ----- FOOTER ----- */
+  footer {
+    background: #040a12;
+    border-top: 1px solid var(--line);
+    padding: 32px 24px;
+    margin-top: 20px;
+  }
+
+  .foot {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    flex-wrap: wrap;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .foot strong { color: #fff; }
+
+  .foot a {
+    color: #8bd0ff;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .foot a:hover { opacity: 0.8; }
+
+  .footlinks {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  /* ----- RTL ----- */
+  [dir="rtl"] .notice {
+    border-left: 0;
+    border-right: 4px solid var(--gold);
+  }
+
+  [dir="rtl"] .nav-links {
+    padding-right: 0;
+  }
+
+  /* ----- RESPONSIVE ----- */
+  @media (max-width: 850px) {
+    nav {
+      justify-content: center;
     }
-    </script>
-    
-    <!-- CANONICAL URL -->
-    <link rel="canonical" href="https://irntex12.github.io/IIB-Manager/">
-    
-    <!-- BALISES HREFLANG POUR GOOGLE (multilingue) -->
-    <link rel="alternate" hreflang="fr" href="https://irntex12.github.io/IIB-Manager/">
-    <link rel="alternate" hreflang="x-default" href="https://irntex12.github.io/IIB-Manager/">
+    .nav-links {
+      justify-content: center;
+      gap: 4px;
+    }
+    .hero {
+      padding: 54px 20px 48px;
+    }
+    .panel {
+      padding: 26px 22px;
+    }
+    .download {
+      padding: 32px 20px;
+    }
+  }
 
-    <title>IIBManager - Gestionnaire de téléchargement vidéo et fichiers pour Windows</title>
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="sitemap.xml">
-    <link rel="icon" type="image/png" href="images/Logo.png">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #e2e8f0;
-            line-height: 1.6;
-        }
-
-        header {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #38bdf8;
-        }
-
-        .logo-img {
-            height: 40px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            cursor: pointer;
-        }
-
-        .nav-links a:hover {
-            color: #38bdf8;
-        }
-
-        .lang-selector {
-            display: flex;
-            gap: 0.5rem;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 0.3rem;
-            border-radius: 40px;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: none;
-            color: #94a3b8;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .lang-btn:hover {
-            background: rgba(56, 189, 248, 0.2);
-            color: #38bdf8;
-        }
-
-        .lang-btn.active {
-            background: #38bdf8;
-            color: #0f172a;
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-        }
-
-        main {
-            max-width: 1200px;
-            margin: 80px auto 0;
-            padding: 2rem;
-        }
-
-        section {
-            margin-bottom: 4rem;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: #38bdf8;
-            position: relative;
-        }
-
-        h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: #38bdf8;
-            margin: 0.5rem auto;
-            border-radius: 2px;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            border-radius: 20px;
-            padding: 4rem 2rem;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .tagline {
-            font-size: 1.5rem;
-            color: #94a3b8;
-            margin-bottom: 1rem;
-        }
-
-        .description {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #38bdf8, #818cf8);
-            color: white;
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .feature-card {
-            background: rgba(30, 41, 59, 0.6);
-            backdrop-filter: blur(5px);
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s;
-            border: 1px solid rgba(56, 189, 248, 0.2);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(56, 189, 248, 0.5);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            margin-bottom: 0.5rem;
-            color: #38bdf8;
-        }
-
-        .download-card {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-        }
-
-        .version-info {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .version-badge, .date-badge {
-            background: #38bdf8;
-            color: #0f172a;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-weight: bold;
-        }
-
-        .btn-download {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            font-size: 1.2rem;
-            padding: 15px 40px;
-            margin: 1rem 0;
-            display: inline-block;
-        }
-
-        .btn-download:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-        }
-
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .screenshot {
-            background: #1e293b;
-            border-radius: 15px;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .screenshot img {
-            width: 100%;
-            height: auto;
-            background: #334155;
-            min-height: 200px;
-            object-fit: cover;
-        }
-
-        .screenshot p {
-            padding: 1rem;
-        }
-
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .faq-item {
-            background: rgba(30, 41, 59, 0.6);
-            padding: 1.5rem;
-            border-radius: 15px;
-        }
-
-        .faq-item h3 {
-            color: #38bdf8;
-            margin-bottom: 0.5rem;
-        }
-
-        .license-card, .credits-card, .testimonials-card, .comparison-card {
-            background: rgba(30, 41, 59, 0.6);
-            border-radius: 20px;
-            padding: 2rem;
-        }
-
-        .license-card h3, .license-card h4 {
-            margin-top: 1rem;
-            color: #38bdf8;
-        }
-
-        .license-card ul, .credit-item {
-            margin: 1rem 0;
-            padding-left: 1.5rem;
-        }
-
-        .license-card li {
-            margin: 0.5rem 0;
-        }
-
-        .credit-item {
-            margin: 1rem 0;
-            padding: 1rem;
-            background: rgba(15, 23, 42, 0.5);
-            border-radius: 10px;
-        }
-
-        .credit-item a {
-            color: #38bdf8;
-            text-decoration: none;
-        }
-
-        .testimonial-item {
-            margin: 1.5rem 0;
-            padding: 1.5rem;
-            background: rgba(15, 23, 42, 0.5);
-            border-radius: 15px;
-            border-left: 4px solid #38bdf8;
-        }
-
-        .testimonial-author {
-            margin-top: 0.5rem;
-            color: #38bdf8;
-            font-weight: bold;
-        }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
-
-        .comparison-table th, .comparison-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-        }
-
-        .comparison-table th {
-            background: rgba(56, 189, 248, 0.1);
-            color: #38bdf8;
-        }
-
-        .check { color: #10b981; }
-        .cross { color: #ef4444; }
-
-        .disclaimer {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: rgba(239, 68, 68, 0.1);
-            border-left: 4px solid #ef4444;
-            border-radius: 5px;
-        }
-
-        footer {
-            background: #0f172a;
-            margin-top: 4rem;
-            padding: 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .footer-info a, .footer-links a {
-            color: #38bdf8;
-            text-decoration: none;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .nav-links {
-                justify-content: center;
-            }
-            
-            .lang-selector {
-                margin-top: 0.5rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
-            
-            main {
-                padding: 1rem;
-            }
-        }
-
-        body[dir="rtl"] .nav-links {
-            padding-right: 0;
-        }
-        
-        body[dir="rtl"] .license-card ul,
-        body[dir="rtl"] .credit-item {
-            padding-right: 1.5rem;
-            padding-left: 0;
-        }
-    </style>
+  @media (max-width: 500px) {
+    .brand {
+      font-size: 1rem;
+    }
+    .brand img {
+      width: 36px;
+      height: 36px;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      padding: 5px 8px;
+    }
+    .btn {
+      width: 100%;
+      padding: 13px 18px;
+      font-size: 0.95rem;
+    }
+    main {
+      padding: 22px 14px 40px;
+    }
+    .hero {
+      padding: 40px 14px 36px;
+      border-radius: 22px;
+    }
+    .download {
+      border-radius: 22px;
+    }
+    .foot {
+      flex-direction: column;
+    }
+  }
+</style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="images/Logo.png" alt="IIBManager Logo" class="logo-img">
-                <span>IIBManager</span>
-            </div>
-            <ul class="nav-links">
-                <li><a data-key="nav-home">Accueil</a></li>
-                <li><a data-key="nav-features">Fonctionnalités</a></li>
-                <li><a data-key="nav-download">Téléchargement</a></li>
-                <li><a data-key="nav-screenshots">Captures</a></li>
-                <li><a data-key="nav-faq">FAQ</a></li>
-                <li><a data-key="nav-license">Licence</a></li>
-                <li><a data-key="nav-credits">Crédits</a></li>
-            </ul>
-            <div class="lang-selector">
-                <button class="lang-btn active" data-lang="fr">🇫🇷 FR</button>
-                <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
-                <button class="lang-btn" data-lang="ar">🇸🇦 عربي</button>
-            </div>
-        </nav>
-    </header>
+<header>
+  <nav>
+    <a class="brand" href="#home">
+      <img src="images/Logo.png" alt="Logo Iri F Videos Backup">
+      <span>Iri F Videos Backup</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home" data-key="home">Accueil</a></li>
+      <li><a href="#features" data-key="features">Fonctionnalités</a></li>
+      <li><a href="#about" data-key="aboutnav">À propos</a></li>
+      <li><a href="#download" data-key="download">Téléchargement</a></li>
+      <li><a href="#screenshots" data-key="screens">Captures</a></li>
+      <li><a href="#faq" data-key="faq">FAQ</a></li>
+    </ul>
+    <div class="lang-selector">
+      <button class="lang-btn active" data-lang="fr">🇫🇷 FR</button>
+      <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+      <button class="lang-btn" data-lang="ar">🇸🇦 عربي</button>
+    </div>
+  </nav>
+</header>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>IIBManager</h1>
-                <p class="tagline" data-key="hero-tagline">Sauveur universel pour vidéos et fichiers</p>
-                <p class="description" data-key="hero-desc">
-                    Sauvegardez vos propres vidéos (YouTube, TikTok, Vimeo, Dailymotion...)<br>
-                    et vos fichiers (PDF, images, ZIP) en un clic.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#download" class="btn btn-primary" data-key="hero-btn">📥 Télécharger Maintenant</a>
-                </div>
-            </div>
-        </section>
+<main>
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="eyebrow" data-key="eyebrow">Application de sauvegarde vidéo</div>
+    <h1>Iri F Videos Backup</h1>
+    <p class="tagline" data-key="tagline">Sauvegardez vos vidéos F en toute simplicité</p>
+    <p class="description" data-key="desc">Une application conçue pour enregistrer localement les vidéos F auxquelles vous avez accès, afin de les retrouver et de les consulter plus facilement hors ligne.</p>
+    <div class="actions">
+      <a href="#download" class="btn primary" data-key="heroBtn">⬇ Télécharger l’application</a>
+      <a href="#features" class="btn secondary" data-key="more">Découvrir les fonctionnalités</a>
+    </div>
+  </section>
 
-        <section id="features" class="features">
-            <h2 data-key="features-title">✨ Fonctionnalités</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎥</div>
-                    <h3 data-key="feature1-title">Vidéos HD/4K</h3>
-                    <p data-key="feature1-desc">YouTube, TikTok, Dailymotion, Vimeo, Twitch, Facebook, Instagram...</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📄</div>
-                    <h3 data-key="feature2-title">Tous Fichiers</h3>
-                    <p data-key="feature2-desc">PDF, images, ZIP, EXE, documents, audios, et plus encore</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3 data-key="feature3-title">Reprise Intelligente</h3>
-                    <p data-key="feature3-desc">Téléchargements interrompus repris automatiquement</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌍</div>
-                    <h3 data-key="feature4-title">Multilingue</h3>
-                    <p data-key="feature4-desc">Français, English, العربية</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🖥️</div>
-                    <h3 data-key="feature5-title">Barre d'état</h3>
-                    <p data-key="feature5-desc">Se cache dans la barre des tâches comme IDM</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📋</div>
-                    <h3 data-key="feature6-title">Détection automatique</h3>
-                    <p data-key="feature6-desc">Capture automatique des URLs du presse-papiers</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🍪</div>
-                    <h3 data-key="feature7-title">Support cookies</h3>
-                    <p data-key="feature7-desc">Pour vos connexions navigateurs</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3 data-key="feature8-title">ffmpeg inclus</h3>
-                    <p data-key="feature8-desc">Merge vidéo/audio automatique en haute qualité</p>
-                </div>
-            </div>
-        </section>
+  <!-- FEATURES -->
+  <section id="features">
+    <h2 data-key="featuresTitle">Fonctionnalités</h2>
+    <p class="intro" data-key="featuresIntro">Une interface pensée pour rendre la sauvegarde vidéo accessible et pratique.</p>
+    <div class="grid">
+      <article class="card">
+        <div class="icon">📥</div>
+        <h3 data-key="f1t">Sauvegarde de vidéos</h3>
+        <p data-key="f1d">Enregistrez les vidéos F accessibles depuis un lien pris en charge.</p>
+      </article>
+      <article class="card">
+        <div class="icon">🔗</div>
+        <h3 data-key="f2t">Utilisation d’un lien</h3>
+        <p data-key="f2d">Collez le lien de la vidéo dans l’application pour lancer la sauvegarde.</p>
+      </article>
+      <article class="card">
+        <div class="icon">📂</div>
+        <h3 data-key="f3t">Fichiers locaux</h3>
+        <p data-key="f3d">Retrouvez les vidéos sauvegardées sur votre appareil, selon les options disponibles.</p>
+      </article>
+      <article class="card">
+        <div class="icon">🧭</div>
+        <h3 data-key="f4t">Interface simple</h3>
+        <p data-key="f4d">Un parcours direct pour saisir un lien et gérer la sauvegarde.</p>
+      </article>
+      <article class="card">
+        <div class="icon">🌐</div>
+        <h3 data-key="f5t">Multilingue</h3>
+        <p data-key="f5d">Interface disponible en français, anglais et arabe.</p>
+      </article>
+      <article class="card">
+        <div class="icon">📱</div>
+        <h3 data-key="f6t">Versions disponibles</h3>
+        <p data-key="f6d">Consultez la section téléchargement pour connaître les versions proposées.</p>
+      </article>
+    </div>
+  </section>
 
-        <section id="about" class="about">
-            <h2 data-key="about-title">📖 À propos d'IIBManager</h2>
-            <div class="license-card">
-                <p data-key="about-text1">
-                    <strong>IIBManager</strong> est un logiciel de téléchargement professionnel développé pour répondre aux besoins 
-                    croissants de sauvegarde de contenu multimédia. Que vous soyez un créateur de contenu souhaitant archiver 
-                    vos productions, un étudiant ayant besoin de sauvegarder des ressources pédagogiques, ou simplement un 
-                    utilisateur voulant conserver ses vidéos préférées en local, IIBManager offre une solution complète et intuitive.
-                </p>
-                <p data-key="about-text2" style="margin-top: 1rem;">
-                    Notre mission est de démocratiser l'accès aux outils de téléchargement professionnel en proposant une 
-                    interface moderne, des performances optimisées et un support technique réactif. Avec plus de 10 000 
-                    téléchargements et une communauté grandissante, IIBManager s'impose comme une référence dans le domaine 
-                    des gestionnaires de téléchargement pour Windows.
-                </p>
-                <p data-key="about-text3" style="margin-top: 1rem;">
-                    Le logiciel est régulièrement mis à jour pour supporter les derniers changements des plateformes comme 
-                    YouTube, TikTok et Dailymotion, garantissant ainsi une compatibilité optimale. Notre engagement est de 
-                    fournir un outil fiable, sécurisé et respectueux des droits d'auteur.
-                </p>
-            </div>
-        </section>
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 data-key="aboutTitle">À propos de l’application</h2>
+    <div class="panel">
+      <p data-key="about1"><strong>Iri F Videos Backup</strong> est une application développée par IRNAM MOHAMED pour faciliter la sauvegarde locale de vidéos F accessibles à l’utilisateur.</p>
+      <p data-key="about2">Le principe est simple : fournir un lien pris en charge, effectuer la sauvegarde, puis retrouver le fichier sur son appareil. L’application est destinée à un usage personnel et responsable.</p>
+      <p data-key="about3">Les fonctionnalités et versions peuvent évoluer au fil des mises à jour. Consultez les informations de version et les notes de publication avant l’installation.</p>
+      <div class="notice" data-key="legal"><strong>À noter :</strong> utilisez l’application uniquement pour les vidéos que vous êtes autorisé à sauvegarder. Respectez les droits d’auteur, la vie privée et les conditions d’utilisation des plateformes. Cette application indépendante n’est ni affiliée à F/Meta ni approuvée par ces sociétés.</div>
+    </div>
+  </section>
 
-        <section id="testimonials" class="testimonials">
-            <h2 data-key="testimonials-title">💬 Témoignages utilisateurs</h2>
-            <div class="testimonials-card">
-                <div class="testimonial-item">
-                    <p>"⭐⭐⭐⭐⭐ - IIBManager a complètement changé ma façon de sauvegarder mes vidéos. L'interface est super intuitive et la vitesse de téléchargement est impressionnante. Je peux enfin archiver toutes mes créations TikTok sans perdre de temps."</p>
-                    <p class="testimonial-author">— Sophie Martin, Créatrice de contenu</p>
-                </div>
-                <div class="testimonial-item">
-                    <p>"⭐⭐⭐⭐⭐ - En tant que formateur en ligne, j'ai besoin de sauvegarder régulièrement des vidéos éducatives. IIBManager me fait gagner un temps précieux avec sa détection automatique et sa reprise intelligente. Un outil indispensable !"</p>
-                    <p class="testimonial-author">— Thomas Bernard, Formateur certifié</p>
-                </div>
-                <div class="testimonial-item">
-                    <p>"⭐⭐⭐⭐ - Excellent logiciel ! La version d'essai de 15 jours m'a permis de tester toutes les fonctionnalités. Le support technique est très réactif et a répondu à toutes mes questions. Je recommande vivement."</p>
-                    <p class="testimonial-author">— Karim Benali, Développeur Web</p>
-                </div>
-            </div>
-        </section>
+  <!-- DOWNLOAD -->
+  <section id="download">
+    <h2 data-key="downloadTitle">Téléchargement</h2>
+    <div class="download">
+      <p class="tagline" data-key="downloadSub">Obtenez la version adaptée à votre appareil</p>
+      <div class="pills">
+        <span class="pill">Android</span>
+        <span class="pill">Windows</span>
+        <span class="pill">Version 1.0.1</span>
+      </div>
+      <div class="actions" style="justify-content:center; flex-wrap:wrap; margin-top:12px;">
+        <a class="btn primary"
+           href="https://github.com/irntex12/Iri-F-Videos-Backup/releases/download/v1.0.1/Iri.F.Videos.Backup-1.0.1.apk"
+           target="_blank" rel="noopener noreferrer" download>
+          ⬇ Télécharger pour Android (APK)
+        </a>
+        <a class="btn secondary"
+           href="https://github.com/irntex12/Iri-F-Videos-Backup/releases/download/zip_v1.0.1/Iri.F.Videos.Backup-1.0.1.zip"
+           target="_blank" rel="noopener noreferrer" download>
+          ⬇ Télécharger pour Windows (ZIP)
+        </a>
+      </div>
+      <p class="small" data-key="downloadNote">Téléchargez le fichier correspondant à votre appareil. Pour Windows, décompressez le ZIP puis lancez l’installateur si nécessaire.</p>
+    </div>
+  </section>
 
-        <section id="comparison" class="comparison">
-            <h2 data-key="comparison-title">📊 Comparatif avec les concurrents</h2>
-            <div class="comparison-card">
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Fonctionnalité</th>
-                            <th>IIBManager</th>
-                            <th>IDM (Payant)</th>
-                            <th>4K Video Downloader</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Téléchargement vidéo YouTube 4K</td><td class="check">✅ Oui</td><td class="check">✅ Oui</td><td class="check">✅ Oui</td></tr>
-                        <tr><td>Téléchargement TikTok</td><td class="check">✅ Oui</td><td class="cross">❌ Non</td><td class="check">✅ Oui</td></tr>
-                        <tr><td>Téléchargement fichiers (PDF, ZIP)</td><td class="check">✅ Oui</td><td class="check">✅ Oui</td><td class="cross">❌ Non</td></tr>
-                        <tr><td>Période d'essai</td><td class="check">15 jours</td><td class="check">30 jours</td><td class="check">Freemium</td></tr>
-                        <tr><td>Prix après essai</td><td class="check">Modique</td><td class="cross">Élevé (29.95$)</td><td class="cross">Abonnement</td></tr>
-                        <tr><td>Support multilingue</td><td class="check">3 langues</td><td class="check">Multilingue</td><td class="check">Multilingue</td></tr>
-                        <tr><td>Reprise automatique</td><td class="check">✅ Oui</td><td class="check">✅ Oui</td><td class="cross">❌ Non</td></tr>
-                    </tbody>
-                </table>
-                <p style="margin-top: 1rem;"><strong>Conclusion :</strong> IIBManager offre le meilleur rapport qualité-prix avec des fonctionnalités uniques comme le support TikTok et le téléchargement de tous types de fichiers, le tout à un prix accessible.</p>
-            </div>
-        </section>
+  <!-- SCREENSHOTS -->
+  <section id="screenshots">
+    <h2 data-key="screensTitle">Aperçu de l’interface</h2>
+    <p class="intro" data-key="screensIntro">Remplacez ces fichiers par vos captures d’écran réelles.</p>
+    <div class="shots">
+      <div class="shot">
+        <img src="images/screenshot1.png" alt="Écran principal de l’application" loading="lazy">
+        <p data-key="shot1">Écran principal</p>
+      </div>
+      <div class="shot">
+        <img src="images/screenshot2.png" alt="Sauvegarde d’une vidéo" loading="lazy">
+        <p data-key="shot2">Sauvegarde d’une vidéo</p>
+      </div>
+      <div class="shot">
+        <img src="images/screenshot3.png" alt="Vidéo sauvegardée" loading="lazy">
+        <p data-key="shot3">Vidéo enregistrée</p>
+      </div>
+    </div>
+  </section>
 
-        <section id="download" class="download">
-            <h2 data-key="download-title">📥 Téléchargement</h2>
-            <div class="download-card">
-                <div class="version-info">
-                    <span class="version-badge">Version 1.0.0 Stable</span>
-                    <span class="date-badge">31/05/2026</span>
-                </div>
-                <div class="download-buttons">
-                    <a href="https://github.com/irntex12/IIB-Manager/releases/download/v1.0.1/IIB_Manager_Setup.zip" class="btn btn-download">
-                         IIB_Manager_Setup.zip (90.0 MB)
-                    </a>
-                </div>
-            </div>
-        </section>
+  <!-- FAQ -->
+  <section id="faq">
+    <h2 data-key="faqTitle">Foire aux questions</h2>
+    <div class="faq">
+      <article class="faq-item">
+        <h3 data-key="q1">Comment utiliser l’application ?</h3>
+        <p data-key="a1">Ouvrez l’application, collez un lien F pris en charge, puis suivez les indications affichées.</p>
+      </article>
+      <article class="faq-item">
+        <h3 data-key="q2">Toutes les vidéos sont-elles disponibles ?</h3>
+        <p data-key="a2">Non. Cela dépend de l’accès à la vidéo, de ses paramètres de confidentialité et de la compatibilité technique.</p>
+      </article>
+      <article class="faq-item">
+        <h3 data-key="q3">Où retrouver la vidéo ?</h3>
+        <p data-key="a3">Consultez l’emplacement de sauvegarde ou les indications de votre version de l’application.</p>
+      </article>
+      <article class="faq-item">
+        <h3 data-key="q4">Est-ce une application officielle F ?</h3>
+        <p data-key="a4">Non. C’est un projet indépendant, non affilié à F/Meta et non approuvé par ces sociétés.</p>
+      </article>
+      <article class="faq-item">
+        <h3 data-key="q5">Comment signaler un problème ?</h3>
+        <p data-key="a5">Consultez le dépôt GitHub du projet et son espace de signalement, s’il est activé.</p>
+      </article>
+      <article class="faq-item">
+        <h3 data-key="q6">Puis-je sauvegarder n’importe quelle vidéo ?</h3>
+        <p data-key="a6">Sauvegardez uniquement les vidéos que vous possédez ou pour lesquelles vous avez l’autorisation nécessaire.</p>
+      </article>
+    </div>
+  </section>
+</main>
 
-        <section id="screenshots" class="screenshots">
-            <h2 data-key="screenshots-title">📸 Aperçu de l'Interface</h2>
-            <div class="screenshots-grid">
-                <div class="screenshot">
-                    <img src="images/screenshot1.png" alt="Interface principale IIBManager">
-                    <p data-key="screenshot1">Interface principale moderne</p>
-                </div>
-                <div class="screenshot">
-                    <img src="images/screenshot2.png" alt="Téléchargement vidéo 4K">
-                    <p data-key="screenshot2">Téléchargement vidéo 4K</p>
-                </div>
-                <div class="screenshot">
-                    <img src="images/screenshot3.png" alt="Gestionnaire de fichiers">
-                    <p data-key="screenshot3">Gestionnaire de fichiers intégré</p>
-                </div>
-            </div>
-        </section>
+<footer>
+  <div class="foot">
+    <div>
+      <p><strong>Iri F Videos Backup</strong> — <span data-key="footerTag">Application de sauvegarde de vidéos F</span></p>
+      <p>© 2026 IRNAM MOHAMED. <span data-key="rights">Tous droits réservés.</span></p>
+      <p data-key="footerDisclaimer">Projet indépendant. F et Meta sont des marques de leurs propriétaires respectifs.</p>
+      <p>Contact : <a href="mailto:irnammohamed.dev@gmail.com">irnammohamed.dev@gmail.com</a></p>
+    </div>
+    <div class="footlinks">
+      <a href="#about" data-key="aboutnav">À propos</a>
+      <a href="#download" data-key="download">Téléchargement</a>
+      <a href="#faq" data-key="faq">FAQ</a>
+    </div>
+  </div>
+</footer>
 
-        <section id="faq" class="faq">
-            <h2 data-key="faq-title">❓ Foire Aux Questions</h2>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <h3 data-key="faq1-q">Comment ça marche ?</h3>
-                    <p data-key="faq1-a">Copiez une URL vidéo ou fichier, collez-la dans le logiciel, choisissez la qualité et téléchargez en un clic.</p>
-                </div>
-                <div class="faq-item">
-                    <h3 data-key="faq2-q">Y a-t-il une version d'essai ?</h3>
-                    <p data-key="faq2-a">Oui, <strong>15 jours d'essai gratuit</strong>. L'abonnement est à prix modique pour soutenir le développement.</p>
-                </div>
-                <div class="faq-item">
-                    <h3 data-key="faq3-q">Est-ce légal ?</h3>
-                    <p data-key="faq3-a">L'outil est parfaitement légal. L'utilisateur est seul responsable du contenu téléchargé.</p>
-                </div>
-                <div class="faq-item">
-                    <h3 data-key="faq4-q">Pourquoi choisir IIBManager ?</h3>
-                    <p data-key="faq4-a">Simple, rapide, sans publicité, interface professionnelle et support technique réactif.</p>
-                </div>
-                <div class="faq-item">
-                    <h3 data-key="faq5-q">Comment signaler un bug ?</h3>
-                    <p data-key="faq5-a">Créez une issue sur GitHub ou contactez l'auteur par email.</p>
-                </div>
-                <div class="faq-item">
-                    <h3 data-key="faq6-q">Quelles sont les alternatives ?</h3>
-                    <p data-key="faq6-a">IDM (payant), 4K Video Downloader (freemium), yt-dlp (CLI).</p>
-                </div>
-            </div>
-        </section>
+<script>
+  const T = {
+    fr: {
+      home: "Accueil",
+      features: "Fonctionnalités",
+      aboutnav: "À propos",
+      download: "Téléchargement",
+      screens: "Captures",
+      faq: "FAQ",
+      eyebrow: "Application de sauvegarde vidéo",
+      tagline: "Sauvegardez vos vidéos F en toute simplicité",
+      desc: "Une application conçue pour enregistrer localement les vidéos F auxquelles vous avez accès, afin de les retrouver et de les consulter plus facilement hors ligne.",
+      heroBtn: "⬇ Télécharger l’application",
+      more: "Découvrir les fonctionnalités",
+      featuresTitle: "Fonctionnalités",
+      featuresIntro: "Une interface pensée pour rendre la sauvegarde vidéo accessible et pratique.",
+      f1t: "Sauvegarde de vidéos",
+      f1d: "Enregistrez les vidéos F accessibles depuis un lien pris en charge.",
+      f2t: "Utilisation d’un lien",
+      f2d: "Collez le lien de la vidéo dans l’application pour lancer la sauvegarde.",
+      f3t: "Fichiers locaux",
+      f3d: "Retrouvez les vidéos sauvegardées sur votre appareil, selon les options disponibles.",
+      f4t: "Interface simple",
+      f4d: "Un parcours direct pour saisir un lien et gérer la sauvegarde.",
+      f5t: "Multilingue",
+      f5d: "Interface disponible en français, anglais et arabe.",
+      f6t: "Versions disponibles",
+      f6d: "Consultez la section téléchargement pour connaître les versions proposées.",
+      aboutTitle: "À propos de l’application",
+      about1: "Iri F Videos Backup est une application développée par IRNAM MOHAMED pour faciliter la sauvegarde locale de vidéos F accessibles à l’utilisateur.",
+      about2: "Le principe est simple : fournir un lien pris en charge, effectuer la sauvegarde, puis retrouver le fichier sur son appareil. L’application est destinée à un usage personnel et responsable.",
+      about3: "Les fonctionnalités et versions peuvent évoluer au fil des mises à jour. Consultez les informations de version et les notes de publication avant l’installation.",
+      legal: "À noter : utilisez l’application uniquement pour les vidéos que vous êtes autorisé à sauvegarder. Respectez les droits d’auteur, la vie privée et les conditions d’utilisation des plateformes. Cette application indépendante n’est ni affiliée à F/Meta ni approuvée par ces sociétés.",
+      downloadTitle: "Téléchargement",
+      downloadSub: "Obtenez la version adaptée à votre appareil",
+      downloadNote: "Téléchargez le fichier correspondant à votre appareil. Pour Windows, décompressez le ZIP puis lancez l’installateur si nécessaire.",
+      screensTitle: "Aperçu de l’interface",
+      screensIntro: "Remplacez ces fichiers par vos captures d’écran réelles.",
+      shot1: "Écran principal",
+      shot2: "Sauvegarde d’une vidéo",
+      shot3: "Vidéo enregistrée",
+      faqTitle: "Foire aux questions",
+      q1: "Comment utiliser l’application ?",
+      a1: "Ouvrez l’application, collez un lien F pris en charge, puis suivez les indications affichées.",
+      q2: "Toutes les vidéos sont-elles disponibles ?",
+      a2: "Non. Cela dépend de l’accès à la vidéo, de ses paramètres de confidentialité et de la compatibilité technique.",
+      q3: "Où retrouver la vidéo ?",
+      a3: "Consultez l’emplacement de sauvegarde ou les indications de votre version de l’application.",
+      q4: "Est-ce une application officielle F ?",
+      a4: "Non. C’est un projet indépendant, non affilié à F/Meta et non approuvé par ces sociétés.",
+      q5: "Comment signaler un problème ?",
+      a5: "Consultez le dépôt GitHub du projet et son espace de signalement, s’il est activé.",
+      q6: "Puis-je sauvegarder n’importe quelle vidéo ?",
+      a6: "Sauvegardez uniquement les vidéos que vous possédez ou pour lesquelles vous avez l’autorisation nécessaire.",
+      footerTag: "Application de sauvegarde de vidéos F",
+      rights: "Tous droits réservés.",
+      footerDisclaimer: "Projet indépendant. F et Meta sont des marques de leurs propriétaires respectifs."
+    },
+    en: {
+      home: "Home",
+      features: "Features",
+      aboutnav: "About",
+      download: "Download",
+      screens: "Screenshots",
+      faq: "FAQ",
+      eyebrow: "Video backup application",
+      tagline: "Back up your F videos with ease",
+      desc: "An application designed to save F videos you can access locally, so you can find and view them more easily offline.",
+      heroBtn: "⬇ Download the app",
+      more: "Explore features",
+      featuresTitle: "Features",
+      featuresIntro: "A practical interface designed to make video backup straightforward.",
+      f1t: "Video backup",
+      f1d: "Save F videos from links supported by the app.",
+      f2t: "Use a video link",
+      f2d: "Paste a video link into the app to start the backup.",
+      f3t: "Local files",
+      f3d: "Find saved videos on your device, depending on available options.",
+      f4t: "Simple interface",
+      f4d: "A direct workflow for entering a link and managing a backup.",
+      f5t: "Multilingual",
+      f5d: "Available in French, English, and Arabic.",
+      f6t: "Available versions",
+      f6d: "Check the download section for currently offered versions.",
+      aboutTitle: "About the application",
+      about1: "Iri F Videos Backup is developed by IRNAM MOHAMED to help users save accessible F videos locally.",
+      about2: "The workflow is simple: provide a supported link, save the video, then locate the file on your device. The app is intended for responsible personal use.",
+      about3: "Features and versions may change. Review version information and release notes before installing.",
+      legal: "Please use the app only for videos you are authorized to save. Respect copyright, privacy, and platform terms. This independent application is not affiliated with or endorsed by F/Meta.",
+      downloadTitle: "Download",
+      downloadSub: "Get the version suitable for your device",
+      downloadNote: "Download the file matching your device. For Windows, unzip the archive and run the installer if needed.",
+      screensTitle: "Interface preview",
+      screensIntro: "Replace these files with actual screenshots.",
+      shot1: "Main screen",
+      shot2: "Video backup",
+      shot3: "Saved video",
+      faqTitle: "Frequently asked questions",
+      q1: "How do I use the app?",
+      a1: "Open the app, paste a supported F link, and follow the on-screen instructions.",
+      q2: "Are all videos available?",
+      a2: "No. Availability depends on access, privacy settings, and technical compatibility.",
+      q3: "Where is the saved video?",
+      a3: "Check the save location or instructions in your app version.",
+      q4: "Is this an official F app?",
+      a4: "No. It is an independent project, not affiliated with or endorsed by F/Meta.",
+      q5: "How do I report an issue?",
+      a5: "Visit the project repository and use its issue tracker, if enabled.",
+      q6: "Can I save any video?",
+      a6: "Only save videos you own or have permission to save.",
+      footerTag: "F video backup application",
+      rights: "All rights reserved.",
+      footerDisclaimer: "Independent project. F and Meta are trademarks of their respective owners."
+    },
+    ar: {
+      home: "الرئيسية",
+      features: "المميزات",
+      aboutnav: "حول التطبيق",
+      download: "التنزيل",
+      screens: "لقطات الشاشة",
+      faq: "الأسئلة الشائعة",
+      eyebrow: "تطبيق لحفظ الفيديوهات",
+      tagline: "احفظ فيديوهات F بسهولة",
+      desc: "تطبيق يساعدك على حفظ فيديوهات F التي يمكنك الوصول إليها على جهازك، لتجدها وتشاهدها دون اتصال بسهولة.",
+      heroBtn: "⬇ تنزيل التطبيق",
+      more: "اكتشف المميزات",
+      featuresTitle: "المميزات",
+      featuresIntro: "واجهة عملية تجعل حفظ الفيديوهات سهلاً ومباشراً.",
+      f1t: "حفظ الفيديوهات",
+      f1d: "احفظ فيديوهات F من الروابط التي يدعمها التطبيق.",
+      f2t: "استخدام رابط",
+      f2d: "الصق رابط الفيديو في التطبيق لبدء الحفظ.",
+      f3t: "ملفات محلية",
+      f3d: "اعثر على الفيديوهات المحفوظة على جهازك وفق الخيارات المتاحة.",
+      f4t: "واجهة بسيطة",
+      f4d: "خطوات مباشرة لإدخال الرابط وإدارة الحفظ.",
+      f5t: "متعدد اللغات",
+      f5d: "متاح بالفرنسية والإنجليزية والعربية.",
+      f6t: "الإصدارات المتاحة",
+      f6d: "راجع قسم التنزيل لمعرفة الإصدارات المتوفرة.",
+      aboutTitle: "حول التطبيق",
+      about1: "طوّر IRNAM MOHAMED تطبيق Iri F Videos Backup لمساعدة المستخدمين على حفظ فيديوهات F المتاحة لهم محلياً.",
+      about2: "طريقة الاستخدام بسيطة: أدخل رابطاً مدعوماً، احفظ الفيديو، ثم اعثر على الملف في جهازك. التطبيق مخصص للاستخدام الشخصي المسؤول.",
+      about3: "قد تتغير الميزات والإصدارات. راجع معلومات الإصدار وملاحظات التحديث قبل التثبيت.",
+      legal: "يرجى استخدام التطبيق فقط لحفظ الفيديوهات المصرح لك بحفظها. احترم حقوق النشر والخصوصية وشروط المنصات. هذا تطبيق مستقل وغير تابع لـ F/ميتا ولا يحظى بتأييدهما.",
+      downloadTitle: "التنزيل",
+      downloadSub: "احصل على الإصدار المناسب لجهازك",
+      downloadNote: "قم بتنزيل الملف المطابق لجهازك. بالنسبة لنظام ويندوز، فك ضغط الملف ثم شغّل المثبّت إذا لزم الأمر.",
+      screensTitle: "معاينة الواجهة",
+      screensIntro: "استبدل هذه الملفات بلقطات شاشة حقيقية.",
+      shot1: "الشاشة الرئيسية",
+      shot2: "حفظ فيديو",
+      shot3: "فيديو محفوظ",
+      faqTitle: "الأسئلة الشائعة",
+      q1: "كيف أستخدم التطبيق؟",
+      a1: "افتح التطبيق والصق رابط F مدعوماً، ثم اتبع التعليمات.",
+      q2: "هل جميع الفيديوهات متاحة؟",
+      a2: "لا، يعتمد ذلك على إمكانية الوصول وإعدادات الخصوصية والتوافق التقني.",
+      q3: "أين أجد الفيديو المحفوظ؟",
+      a3: "راجع مكان الحفظ أو التعليمات في إصدار التطبيق لديك.",
+      q4: "هل التطبيق رسمي من F؟",
+      a4: "لا، إنه مشروع مستقل وغير تابع لـ F/ميتا ولا يحظى بتأييدهما.",
+      q5: "كيف أبلغ عن مشكلة؟",
+      a5: "زر مستودع المشروع واستخدم صفحة المشكلات إن كانت مفعّلة.",
+      q6: "هل يمكن حفظ أي فيديو؟",
+      a6: "احفظ فقط الفيديوهات التي تملكها أو لديك إذن بحفظها.",
+      footerTag: "تطبيق لحفظ فيديوهات F",
+      rights: "جميع الحقوق محفوظة.",
+      footerDisclaimer: "مشروع مستقل. F وميتا علامتان تجاريتان لمالكيهما."
+    }
+  };
 
-        <section id="license" class="license">
-            <h2 data-key="license-title">📜 Licence</h2>
-            <div class="license-card">
-                <h3 data-key="license-name">IIBManager - Licence propriétaire</h3>
-                <p><strong data-key="copyright">Copyright © 2026 IRNAM MOHAMED - Tous droits réservés</strong></p>
-                <p data-key="license-text">Ce logiciel est la propriété exclusive de IRNAM MOHAMED. Il est protégé par le droit d'auteur.</p>
-                
-                <h4 data-key="license-rights-title">✅ Vous avez le droit de :</h4>
-                <ul>
-                    <li data-key="right1">Utiliser le logiciel sur vos ordinateurs personnels</li>
-                    <li data-key="right2">Faire une copie de sauvegarde du logiciel</li>
-                    <li data-key="right3">Utiliser la version d'essai gratuitement pendant 15 jours</li>
-                </ul>
-                
-                <h4 data-key="license-forbidden-title">❌ Vous n'avez PAS le droit de :</h4>
-                <ul>
-                    <li data-key="forbidden1">Vendre, redistribuer ou louer le logiciel</li>
-                    <li data-key="forbidden2">Désassembler, décompiler ou modifier le code source</li>
-                    <li data-key="forbidden3">Contourner le système de licence</li>
-                    <li data-key="forbidden4">Utiliser le logiciel pour des activités illégales</li>
-                </ul>
-                
-                <p class="disclaimer" data-key="disclaimer">
-                    <strong>⚠️ Avertissement :</strong> L'utilisateur est seul responsable de l'utilisation qu'il fait du logiciel.<br>
-                    Le téléchargement de vidéos protégées par le droit d'auteur sans autorisation peut être illégal.
-                </p>
-            </div>
-        </section>
+  function setLang(lang) {
+    const d = T[lang];
+    if (!d) return;
 
-        <section id="credits" class="credits">
-            <h2 data-key="credits-title">🙏 Crédits</h2>
-            <div class="credits-card">
-                <p data-key="credits-text">IIBManager utilise les bibliothèques et outils open-source suivants :</p>
-                
-                <div class="credit-item">
-                    <strong>🎬 yt-dlp</strong>
-                    <p>Licence <strong>Unlicense</strong> - <a href="https://github.com/yt-dlp/yt-dlp">github.com/yt-dlp/yt-dlp</a></p>
-                </div>
-                <div class="credit-item">
-                    <strong>📡 requests</strong>
-                    <p>Licence <strong>Apache 2.0</strong> - <a href="https://github.com/psf/requests">github.com/psf/requests</a></p>
-                </div>
-                <div class="credit-item">
-                    <strong>🎞️ ffmpeg</strong>
-                    <p>Licence <strong>GNU GPL v3.0</strong> - <a href="https://ffmpeg.org">ffmpeg.org</a></p>
-                </div>
-                <div class="credit-item">
-                    <strong>📱 Kivy</strong>
-                    <p>Licence <strong>MIT</strong> - <a href="https://kivy.org">kivy.org</a></p>
-                </div>
-                <div class="credit-item">
-                    <strong>📦 PyInstaller</strong>
-                    <p>Licence <strong>GPL v2.0</strong> - <a href="https://pyinstaller.org">pyinstaller.org</a></p>
-                </div>
-            </div>
-        </section>
-    </main>
+    document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === "ar") ? "rtl" : "ltr";
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-info">
-                <p><strong>IIBManager</strong> <span data-key="footer-tagline">- Sauveur universel de vidéos et fichiers</span></p>
-                <p>© 2026 IRNAM MOHAMED</p>
-                <p>Contact : <a href="mailto:irnammohamed.dev@gmail.com">irnammohamed.dev@gmail.com</a></p>
-                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">IIBManager est la solution idéale pour tous vos besoins de téléchargement sur Windows. Que ce soit pour sauvegarder vos vidéos YouTube préférées, archiver du contenu TikTok, ou télécharger des fichiers PDF et archives ZIP, notre logiciel vous offre rapidité, fiabilité et simplicité d'utilisation.</p>
-            </div>
-            <div class="footer-links">
-                <a href="#license" data-key="footer-license">Licence</a>
-                <a href="#credits" data-key="footer-credits">Crédits</a>
-                <a href="#download" data-key="footer-download">Téléchargement</a>
-            </div>
-        </div>
-    </footer>
+    document.querySelectorAll(".lang-btn").forEach(b => {
+      b.classList.toggle("active", b.dataset.lang === lang);
+    });
 
-    <script>
-        // Smooth scrolling
-        document.querySelectorAll('.nav-links a, .hero-buttons a, .footer-links a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href && href.startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-            });
-        });
+    document.querySelectorAll("[data-key]").forEach(e => {
+      const k = e.dataset.key;
+      if (d[k] !== undefined) e.textContent = d[k];
+    });
 
-        const translations = {
-            fr: {
-                "nav-home": "Accueil", "nav-features": "Fonctionnalités", "nav-download": "Téléchargement",
-                "nav-screenshots": "Captures", "nav-faq": "FAQ", "nav-license": "Licence", "nav-credits": "Crédits",
-                "hero-tagline": "Sauveur universel pour vidéos et fichiers",
-                "hero-desc": "Sauvegardez vos propres vidéos (YouTube, TikTok, Vimeo, Dailymotion...)<br>et vos fichiers (PDF, images, ZIP) en un clic.",
-                "hero-btn": "📥 Télécharger Maintenant",
-                "features-title": "✨ Fonctionnalités",
-                "feature1-title": "Vidéos HD/4K", "feature1-desc": "YouTube, TikTok, Dailymotion, Vimeo, Twitch, Facebook, Instagram...",
-                "feature2-title": "Tous Fichiers", "feature2-desc": "PDF, images, ZIP, EXE, documents, audios, et plus encore",
-                "feature3-title": "Reprise Intelligente", "feature3-desc": "Téléchargements interrompus repris automatiquement",
-                "feature4-title": "Multilingue", "feature4-desc": "Français, English, العربية",
-                "feature5-title": "Barre d'état", "feature5-desc": "Se cache dans la barre des tâches comme IDM",
-                "feature6-title": "Détection automatique", "feature6-desc": "Capture automatique des URLs du presse-papiers",
-                "feature7-title": "Support cookies", "feature7-desc": "Pour vos connexions navigateurs",
-                "feature8-title": "ffmpeg inclus", "feature8-desc": "Merge vidéo/audio automatique en haute qualité",
-                "download-title": "📥 Téléchargement",
-                "screenshots-title": "📸 Aperçu de l'Interface",
-                "screenshot1": "Interface principale moderne",
-                "screenshot2": "Téléchargement vidéo 4K",
-                "screenshot3": "Gestionnaire de fichiers intégré",
-                "faq-title": "❓ Foire Aux Questions",
-                "faq1-q": "Comment ça marche ?", "faq1-a": "Copiez une URL vidéo ou fichier, collez-la dans le logiciel, choisissez la qualité et téléchargez en un clic.",
-                "faq2-q": "Y a-t-il une version d'essai ?", "faq2-a": "Oui, 15 jours d'essai gratuit. L'abonnement est à prix modique pour soutenir le développement.",
-                "faq3-q": "Est-ce légal ?", "faq3-a": "L'outil est parfaitement légal. L'utilisateur est seul responsable du contenu téléchargé.",
-                "faq4-q": "Pourquoi choisir IIBManager ?", "faq4-a": "Simple, rapide, sans publicité, interface professionnelle et support technique réactif.",
-                "faq5-q": "Comment signaler un bug ?", "faq5-a": "Créez une issue sur GitHub ou contactez l'auteur par email.",
-                "faq6-q": "Quelles sont les alternatives ?", "faq6-a": "IDM (payant), 4K Video Downloader (freemium), yt-dlp (CLI).",
-                "license-title": "📜 Licence", "license-name": "IIBManager - Licence propriétaire",
-                "copyright": "Copyright © 2026 IRNAM MOHAMED - Tous droits réservés",
-                "license-text": "Ce logiciel est la propriété exclusive de IRNAM MOHAMED. Il est protégé par le droit d'auteur.",
-                "license-rights-title": "✅ Vous avez le droit de :",
-                "right1": "Utiliser le logiciel sur vos ordinateurs personnels",
-                "right2": "Faire une copie de sauvegarde du logiciel",
-                "right3": "Utiliser la version d'essai gratuitement pendant 15 jours",
-                "license-forbidden-title": "❌ Vous n'avez PAS le droit de :",
-                "forbidden1": "Vendre, redistribuer ou louer le logiciel",
-                "forbidden2": "Désassembler, décompiler ou modifier le code source",
-                "forbidden3": "Contourner le système de licence",
-                "forbidden4": "Utiliser le logiciel pour des activités illégales",
-                "disclaimer": "⚠️ Avertissement : L'utilisateur est seul responsable de l'utilisation qu'il fait du logiciel. Le téléchargement de vidéos protégées par le droit d'auteur sans autorisation peut être illégal.",
-                "credits-title": "🙏 Crédits", "credits-text": "IIBManager utilise les bibliothèques et outils open-source suivants :",
-                "footer-tagline": "- Sauveur universel de vidéos et fichiers",
-                "footer-license": "Licence", "footer-credits": "Crédits", "footer-download": "Téléchargement",
-                "about-title": "📖 À propos d'IIBManager",
-                "about-text1": "IIBManager est un logiciel de téléchargement professionnel développé pour répondre aux besoins croissants de sauvegarde de contenu multimédia. Que vous soyez un créateur de contenu souhaitant archiver vos productions, un étudiant ayant besoin de sauvegarder des ressources pédagogiques, ou simplement un utilisateur voulant conserver ses vidéos préférées en local, IIBManager offre une solution complète et intuitive.",
-                "about-text2": "Notre mission est de démocratiser l'accès aux outils de téléchargement professionnel en proposant une interface moderne, des performances optimisées et un support technique réactif. Avec plus de 10 000 téléchargements et une communauté grandissante, IIBManager s'impose comme une référence dans le domaine des gestionnaires de téléchargement pour Windows.",
-                "about-text3": "Le logiciel est régulièrement mis à jour pour supporter les derniers changements des plateformes comme YouTube, TikTok et Dailymotion, garantissant ainsi une compatibilité optimale. Notre engagement est de fournir un outil fiable, sécurisé et respectueux des droits d'auteur.",
-                "testimonials-title": "💬 Témoignages utilisateurs",
-                "comparison-title": "📊 Comparatif avec les concurrents"
-            },
-            en: {
-                "nav-home": "Home", "nav-features": "Features", "nav-download": "Download",
-                "nav-screenshots": "Screenshots", "nav-faq": "FAQ", "nav-license": "License", "nav-credits": "Credits",
-                "hero-tagline": "Universal saver for videos and files",
-                "hero-desc": "Save your own videos (YouTube, TikTok, Vimeo, Dailymotion...)<br>and files (PDF, images, ZIP) with one click.",
-                "hero-btn": "📥 Download Now",
-                "features-title": "✨ Features",
-                "feature1-title": "HD/4K Videos", "feature1-desc": "YouTube, TikTok, Dailymotion, Vimeo, Twitch, Facebook, Instagram...",
-                "feature2-title": "All Files", "feature2-desc": "PDF, images, ZIP, EXE, documents, audio, and more",
-                "feature3-title": "Smart Resume", "feature3-desc": "Interrupted downloads resume automatically",
-                "feature4-title": "Multilingual", "feature4-desc": "French, English, العربية",
-                "feature5-title": "System Tray", "feature5-desc": "Hides in taskbar like IDM",
-                "feature6-title": "Auto Detection", "feature6-desc": "Automatically captures URLs from clipboard",
-                "feature7-title": "Cookie Support", "feature7-desc": "For your browser connections",
-                "feature8-title": "ffmpeg included", "feature8-desc": "Auto merge video/audio in high quality",
-                "download-title": "📥 Download",
-                "screenshots-title": "📸 Interface Preview",
-                "screenshot1": "Modern main interface",
-                "screenshot2": "4K video download",
-                "screenshot3": "Integrated file manager",
-                "faq-title": "❓ FAQ",
-                "faq1-q": "How does it work?", "faq1-a": "Copy a video or file URL, paste it into the software, choose quality and download.",
-                "faq2-q": "Is there a trial version?", "faq2-a": "Yes, 15 days free trial. Subscription is affordable to support development.",
-                "faq3-q": "Is it legal?", "faq3-a": "The tool is perfectly legal. The user is solely responsible for downloaded content.",
-                "faq4-q": "Why choose IIBManager?", "faq4-a": "Simple, fast, no ads, professional interface and responsive support.",
-                "faq5-q": "How to report a bug?", "faq5-a": "Create an issue on GitHub or contact the author by email.",
-                "faq6-q": "What are the alternatives?", "faq6-a": "IDM (paid), 4K Video Downloader (freemium), yt-dlp (CLI).",
-                "license-title": "📜 License", "license-name": "IIBManager - Proprietary License",
-                "copyright": "Copyright © 2026 IRNAM MOHAMED - All rights reserved",
-                "license-text": "This software is the exclusive property of IRNAM MOHAMED. It is protected by copyright law.",
-                "license-rights-title": "✅ You have the right to:",
-                "right1": "Use the software on your personal computers",
-                "right2": "Make a backup copy of the software",
-                "right3": "Use the trial version for free for 15 days",
-                "license-forbidden-title": "❌ You do NOT have the right to:",
-                "forbidden1": "Sell, redistribute or rent the software",
-                "forbidden2": "Disassemble, decompile or modify the source code",
-                "forbidden3": "Bypass the license system",
-                "forbidden4": "Use the software for illegal activities",
-                "disclaimer": "⚠️ Warning: The user is solely responsible for their use of the software. Downloading copyrighted videos without permission may be illegal.",
-                "credits-title": "🙏 Credits", "credits-text": "IIBManager uses the following open-source libraries and tools:",
-                "footer-tagline": "- Universal video and file saver",
-                "footer-license": "License", "footer-credits": "Credits", "footer-download": "Download",
-                "about-title": "📖 About IIBManager",
-                "about-text1": "IIBManager is a professional download software developed to meet the growing needs of multimedia content backup. Whether you are a content creator wanting to archive your productions, a student needing to save educational resources, or simply a user wanting to keep your favorite videos locally, IIBManager offers a complete and intuitive solution.",
-                "about-text2": "Our mission is to democratize access to professional download tools by offering a modern interface, optimized performance, and responsive technical support. With over 10,000 downloads and a growing community, IIBManager is establishing itself as a reference in the field of download managers for Windows.",
-                "about-text3": "The software is regularly updated to support the latest changes on platforms like YouTube, TikTok, and Dailymotion, ensuring optimal compatibility. Our commitment is to provide a reliable, secure, and copyright-respecting tool.",
-                "testimonials-title": "💬 User Testimonials",
-                "comparison-title": "📊 Comparison with competitors"
-            },
-            ar: {
-                "nav-home": "الرئيسية", "nav-features": "المميزات", "nav-download": "تحميل",
-                "nav-screenshots": "لقطات", "nav-faq": "أسئلة", "nav-license": "الترخيص", "nav-credits": "شكر",
-                "hero-tagline": "منقذ عالمي للفيديوهات والملفات",
-                "hero-desc": "احفظ فيديوهاتك (يوتيوب، تيك توك، فيميو، ديلي موشن...)<br>وملفاتك (PDF، صور، ZIP) بنقرة واحدة.",
-                "hero-btn": "📥 تحميل الآن",
-                "features-title": "✨ المميزات",
-                "feature1-title": "فيديو HD/4K", "feature1-desc": "يوتيوب، تيك توك، فيميو، ديلي موشن، تويتش، فيسبوك، انستغرام...",
-                "feature2-title": "جميع الملفات", "feature2-desc": "PDF، صور، ZIP، EXE، مستندات، صوتيات، والمزيد",
-                "feature3-title": "استئناف ذكي", "feature3-desc": "استئناف التحميلات المتقطعة تلقائياً",
-                "feature4-title": "متعدد اللغات", "feature4-desc": "Français, English, العربية",
-                "feature5-title": "شريط المهام", "feature5-desc": "يختبئ في شريط المهام مثل IDM",
-                "feature6-title": "كشف تلقائي", "feature6-desc": "يلتقط الروابط تلقائياً من الحافظة",
-                "feature7-title": "دعم الكوكيز", "feature7-desc": "لاتصالات المتصفح",
-                "feature8-title": "ffmpeg مدمج", "feature8-desc": "دمج الفيديو/الصوت تلقائياً بجودة عالية",
-                "download-title": "📥 تحميل",
-                "screenshots-title": "📸 نظرة على الواجهة",
-                "screenshot1": "واجهة رئيسية حديثة",
-                "screenshot2": "تحميل فيديو 4K",
-                "screenshot3": "مدير ملفات مدمج",
-                "faq-title": "❓ أسئلة شائعة",
-                "faq1-q": "كيف يعمل؟", "faq1-a": "انسخ رابط فيديو أو ملف، الصقه في البرنامج، اختر الجودة وحمّل بنقرة واحدة.",
-                "faq2-q": "هل هناك نسخة تجريبية؟", "faq2-a": "نعم، 15 يوماً تجريبياً مجاناً. الاشتراك بسعر رمزي لدعم التطوير.",
-                "faq3-q": "هل هو قانوني؟", "faq3-a": "الأداة قانونية تماماً. المستخدم مسؤول وحده عن المحتوى الذي يحمّله.",
-                "faq4-q": "لماذا تختار IIBManager؟", "faq4-a": "بسيط، سريع، بدون إعلانات، واجهة احترافية ودعم فني سريع.",
-                "faq5-q": "كيف أبلغ عن خلل؟", "faq5-a": "أنشئ مشكلة على GitHub أو اتصل بالمؤلف عبر البريد الإلكتروني.",
-                "faq6-q": "ما هي البدائل؟", "faq6-a": "IDM (مدفوع)، 4K Video Downloader (مختلط)، yt-dlp (سطر أوامر).",
-                "license-title": "📜 الترخيص", "license-name": "IIBManager - ترخيص ملكي",
-                "copyright": "© 2026 إرنام محمد - جميع الحقوق محفوظة",
-                "license-text": "هذا البرنامج ملكية حصرية لإرنام محمد. وهو محمي بقانون حقوق النشر.",
-                "license-rights-title": "✅ لديك الحق في:",
-                "right1": "استخدام البرنامج على أجهزتك الشخصية",
-                "right2": "عمل نسخة احتياطية من البرنامج",
-                "right3": "استخدام النسخة التجريبية مجاناً لمدة 15 يوماً",
-                "license-forbidden-title": "❌ ليس لديك الحق في:",
-                "forbidden1": "بيع أو إعادة توزيع أو تأجير البرنامج",
-                "forbidden2": "تفكيك أو فك ضغط أو تعديل الكود المصدري",
-                "forbidden3": "تجاوز نظام الترخيص",
-                "forbidden4": "استخدام البرنامج في أنشطة غير قانونية",
-                "disclaimer": "⚠️ تحذير: المستخدم مسؤول وحده عن استخدامه للبرنامج. تحميل الفيديوهات المحمية بحقوق الطبع دون إذن قد يكون غير قانوني.",
-                "credits-title": "🙏 شكر", "credits-text": "IIBManager يستخدم المكتبات والأدوات مفتوحة المصدر التالية:",
-                "footer-tagline": "- منقذ الفيديو والملفات العالمي",
-                "footer-license": "الترخيص", "footer-credits": "شكر", "footer-download": "تحميل",
-                "about-title": "📖 حول IIBManager",
-                "about-text1": "IIBManager هو برنامج تحميل احترافي تم تطويره لتلبية الاحتياجات المتزايدة لحفظ المحتوى المتعدد الوسائط. سواء كنت منشئ محتوى ترغب في أرشفة إنتاجاتك، أو طالباً تحتاج إلى حفظ موارد تعليمية، أو مجرد مستخدم يريد الاحتفاظ بمقاطع الفيديو المفضلة لديك محلياً، يقدم IIBManager حلاً كاملاً وبديهياً.",
-                "about-text2": "مهمتنا هي ديمقراطية الوصول إلى أدوات التحميل الاحترافية من خلال تقديم واجهة حديثة وأداء محسن ودعم فني سريع الاستجابة. مع أكثر من 10000 عملية تحميل ومجتمع متنام، يثبت IIBManager نفسه كمرجع في مجال مديري التحميل لنظام Windows.",
-                "about-text3": "يتم تحديث البرنامج بانتظام لدعم أحدث التغييرات على منصات مثل يوتيوب وتيك توك وديلي موشن، مما يضمن توافقاً مثالياً. التزامنا هو توفير أداة موثوقة وآمنة وتحترم حقوق النشر.",
-                "testimonials-title": "💬 شهادات المستخدمين",
-                "comparison-title": "📊 مقارنة مع المنافسين"
-            }
-        };
+    try { localStorage.setItem("irifvb_lang", lang); } catch (e) {}
+  }
 
-        let currentLang = 'fr';
+  document.querySelectorAll(".lang-btn").forEach(b => {
+    b.addEventListener("click", () => setLang(b.dataset.lang));
+  });
 
-        function switchLanguage(lang) {
-            currentLang = lang;
-            
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                if (btn.dataset.lang === lang) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-            
-            document.querySelectorAll('[data-key]').forEach(element => {
-                const key = element.dataset.key;
-                if (translations[lang] && translations[lang][key]) {
-                    element.innerHTML = translations[lang][key];
-                }
-            });
-            
-            if (lang === 'ar') {
-                document.body.style.direction = 'rtl';
-                document.body.setAttribute('dir', 'rtl');
-            } else {
-                document.body.style.direction = 'ltr';
-                document.body.setAttribute('dir', 'ltr');
-            }
-            
-            localStorage.setItem('iibmanager_lang', lang);
-        }
-
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                switchLanguage(btn.dataset.lang);
-            });
-        });
-        
-        const savedLang = localStorage.getItem('iibmanager_lang');
-        if (savedLang && translations[savedLang]) {
-            switchLanguage(savedLang);
-        } else {
-            switchLanguage('fr');
-        }
-    </script>
+  let lang = "fr";
+  try { lang = localStorage.getItem("irifvb_lang") || "fr"; } catch (e) {}
+  setLang(T[lang] ? lang : "fr");
+</script>
 </body>
 </html>
